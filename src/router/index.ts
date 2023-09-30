@@ -8,12 +8,42 @@ const routes: Array<RouteRecordRaw> = [
     component: HomeView
   },
   {
-    path: '/about',
+    path: '/about/:name/:age',
     name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+    // alias: '/about-us',
+    component: () => import('../views/AboutView.vue')
+  },
+  {
+    path: '/allList',
+    name: 'allList',
+    component: () => import('../views/MyShortList/AllList.vue')
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: '404_page',
+    component: ()=>import('../views/MyShortList/404Page.vue')
+  },
+  {
+    path: '/todoAllList',
+    name: 'todoAllList',
+    component: () => import('../views/MyList/AllList.vue')
+  },
+  {
+    path: '/homePage',
+    name: 'homePage',
+    component: () => import('../views/HomePage.vue'),
+    beforeEnter: (to, from, next) => {
+      if (localStorage.getItem('vueAuth') == 'true') {
+        next();
+      } else {
+        next('LoginPage')
+      }
+    }
+  },
+  {
+    path: '/loginPage',
+    name: 'loginPage',
+    component: () => import('../views/LoginPage.vue')
   }
 ]
 

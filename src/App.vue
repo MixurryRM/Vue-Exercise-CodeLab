@@ -1,9 +1,15 @@
 <template>
   <nav>
     <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+    <router-link to="/about">About</router-link>|
+    <router-link :to="{name: 'allList'}">AllListView</router-link>|
+    <router-link :to="{name: 'todoAllList'}">TodoAllList</router-link>|
+    <router-link :to="{name: 'homePage'}">Home Page</router-link>|
+    <router-link :to="{name: 'loginPage'}">Login</router-link>
   </nav>
-  <router-view/>
+ <div>
+    <router-view/>
+ </div>
 </template>
 
 <style lang="scss">
